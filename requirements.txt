@@ -1,0 +1,8 @@
+📁 Spam_Classifier_Project
+│── 📄 app.py  (Main Streamlit UI)
+│── 📄 eda.py  (Handles Exploratory Data Analysis)
+│── 📄 spam.py (Preprocesses data, trains model, and predicts spam)
+│── 📄 requirements.txt (Required libraries)
+
+Streamlit
+nltk
