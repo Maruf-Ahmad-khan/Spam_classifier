@@ -1,5 +1,6 @@
 import streamlit as st
 import matplotlib.pyplot as plt
+from nltk.corpus import stopwords
 import seaborn as sns
 import pandas as pd
 from wordcloud import WordCloud

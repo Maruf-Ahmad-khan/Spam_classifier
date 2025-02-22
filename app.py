@@ -1,14 +1,40 @@
 import streamlit as st
 import pandas as pd
+import os
+import nltk
+import warnings
+from nltk.corpus import stopwords
 from spam import SpamClassifier
 from eda import EDA
-import warnings
-warnings.filterwarnings('ignore')
 
-classifier = SpamClassifier(file_path=r"C:\Users\mk744\OneDrive - Poornima University\Desktop\spam_classifiers\Email_spam_data.csv")
+# ✅ Ignore warnings
+warnings.filterwarnings("ignore")
+
+# ✅ Manually set the NLTK data path
+nltk.data.path.append("C:\\nltk_data")
+
+# ✅ Function to check and download only if needed
+def download_nltk_packages():
+    required_packages = ["stopwords", "punkt", "wordnet"]
+    
+    for package in required_packages:
+        try:
+            nltk.data.find(f"corpora/{package}")
+            print(f"{package} is already installed.")
+        except LookupError:
+            print(f"Downloading {package}...")
+            nltk.download(package, download_dir="C:\\nltk_data")
+
+# ✅ Run the function
+download_nltk_packages()
+
+# ✅ Use Fixed File Path for Dataset
+file_path = r"C:\Users\mk744\OneDrive - Poornima University\Desktop\spam_classifiers\Email_spam_data.csv"
+classifier = SpamClassifier(file_path=file_path)
 results = classifier.train_models()
 eda = EDA(classifier.df)
 
+# ✅ Streamlit UI
 st.title("📩 Spam Email Classifier App")
 
 st.sidebar.header("Navigation")
